@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+<aop:config>
+	<!-- <aop:aspect ref="employeeXMLConfigAspect" id="employeeXMLConfigAspectID" order="1">
+		<aop:pointcut expression="execution(* com.mani.model.Employee.getName())" id="getNamePointcut"/>
+		<aop:around method="employeeAroundAdvice" pointcut-ref="getNamePointcut" arg-names="proceedingJoinPoint"/>
+	</aop:aspect>
+	<aop:aspect ref="employeeXMLConfigAspect" id="employeeXMLConfigAspectID">
+		<aop:pointcut expression="execution(* com.mani.model.Employee.getName())" id="getNamePointcut"/>
+		<aop:before method="employeeBeforeAdvice" pointcut-ref="getNamePointcut"/>
+	</aop:aspect>
+	<aop:aspect ref="employeeXMLConfigAspect" id="employeeXMLConfigAspectID2">
+		<aop:pointcut expression="execution(* com.mani.model.Employee.setName(*))" id="setNamePointcut"/>
+		<aop:after method="employeeAfterAdvice" pointcut-ref="setNamePointcut"/>
+	</aop:aspect> -->
+	<aop:aspect ref="employeeXMLConfigAspect" id="employeeXMLConfigAspectID3">
+		<aop:pointcut expression="execution(* com.mani.model.Employee.getName())" id="setNamePointcut"/>
+		<aop:after-returning method="employeeReturning" pointcut-ref="setNamePointcut" returning="str"/>
+	</aop:aspect>
+	<!-- <aop:aspect ref="employeeXMLConfigAspect" id="employeeXMLConfigAspectID4">
+		<aop:pointcut expression="within(com.mani.model.Employee)" id="setNamePointcut"/>
+		<aop:after-throwing method="employeeThrowing" pointcut-ref="setNamePointcut" />
+	</aop:aspect> -->
+</aop:config>
+
+<bean name="employee" class="com.mani.model.Employee">
+	<property name="name" value="Manikantha"></property>
+</bean>
+
+<bean name="employeeService" class="com.mani.services.EmployeeService">
+	<property name="employee" ref="employee"></property>
+</bean>
+
+<bean name="employeeXMLConfigAspect" class="com.mani.spring.aspect.EmployeeXMLConfigAspect" />
+
+<!-- 
+<bean name="employeeAspect" class="com.mani.spring.aspect.EmployeeAspect" />
+<bean name="employeeAspectPointcut" class="com.mani.spring.aspect.EmployeeAspectPointcut" />
+<bean name="employeeAspectJoinPoint" class="com.mani.spring.aspect.EmployeeAspectJoinPoint" />
+<bean name="employeeAfterAspect" class="com.mani.spring.aspect.EmployeeAfterAspect" />
+<bean name="employeeAroundAspect" class="com.mani.spring.aspect.EmployeeAroundAspect" />
+<bean name="employeeAnnotationAspect" class="com.mani.spring.aspect.EmployeeAnnotationAspect" /> -->
+
+</beans>
