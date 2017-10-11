@@ -5,7 +5,7 @@ import org.springframework.beans.factory.InitializingBean;
 
 import com.mani.model.Employee;
 
-public class EmployeeService implements InitializingBean,DisposableBean{
+public class EmployeeServiceWithInitAndDestroyMethods{
 	
 	private Employee employee;
 	
@@ -17,30 +17,20 @@ public class EmployeeService implements InitializingBean,DisposableBean{
 		this.employee=e;
 	}
 	
-	public EmployeeService(){
+	public EmployeeServiceWithInitAndDestroyMethods(){
 		System.out.println("EmployeeService no-args constructor called");
 	}
 
-	@Override
-	public void destroy() throws Exception {
-		System.out.println("Disposable Bean :Before destroying");
-		
-	}
-	
-	public void destroy2(){
-		System.out.println("destroy method:Before destroying");
+	public void destroy() {
+		System.out.println("destroy method :Before destroying");
 		
 	}
 
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		System.out.println("Initializing Bean :after PropertiesSet");
-			employee.setName("Mani");
-	}
-	
 	public void init() {
 		System.out.println("Init method :after PropertiesSet");
+		if(employee.getName() == null){
 			employee.setName("Manikanta");
+		}
 	}
 
 }

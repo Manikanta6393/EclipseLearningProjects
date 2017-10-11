@@ -28,7 +28,7 @@
 	</aop:aspect> -->
 </aop:config>
 
-<bean name="employee" class="com.mani.model.Employee">
+<bean name="employee" class="com.mani.model.Employee" scope="prototype">
 	<property name="name" value="Manikantha"></property>
 </bean>
 

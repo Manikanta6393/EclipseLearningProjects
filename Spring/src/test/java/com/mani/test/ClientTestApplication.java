@@ -2,7 +2,7 @@ package com.mani.test;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.mani.spring.consumer.MyXMLApplication;
+import com.mani.services.EmployeeService;
 
 public class ClientTestApplication {
 	
@@ -12,10 +12,15 @@ public class ClientTestApplication {
 		app.processMessage("Hi Manikantha", "mani@dxc.com");
 		context.close();*/
 		
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		/*ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		MyXMLApplication app = context.getBean(MyXMLApplication.class);
 		app.processMessage("Hi Manikantha", "mani@dxc.com");
-		context.close();
+		context.close();*/
+		
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContextBeanLifeCycle.xml");
+		EmployeeService service = ctx.getBean("employeeService", EmployeeService.class);
+		System.out.println(service.getEmployee().getName());
+		ctx.close();
 		
 	}
 
