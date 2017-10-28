@@ -39,16 +39,15 @@ public class UserService {
 	
 	@POST
 	@Path("/users")
-	@Produces(MediaType.APPLICATION_XML)
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public String createUser(@FormParam("id") int id,@FormParam("name") String name,
-		      @FormParam("profession") String profession, @Context HttpServletResponse servletResponse){
-		 User user = new User(id, name, profession);
+	@Produces(MediaType.TEXT_PLAIN)
+	@Consumes(MediaType.APPLICATION_XML)
+	public String createUser(User user){
+		 //User user = new User(id, name, profession);
 	      int result = userDao.addUser(user);
 	      if(result == 1){
-	         return SUCCESS_RESULT;
+	         return "SUCCESS";
 	      }
-	      return FAILURE_RESULT;
+	      return "FAIL";
 	}
 	
 	@PUT
